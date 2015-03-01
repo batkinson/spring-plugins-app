@@ -19,4 +19,12 @@
         <module>plugin-two</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.github.batkinson</groupId>
+            <artifactId>core-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
 </project>
