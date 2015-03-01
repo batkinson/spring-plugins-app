@@ -8,4 +8,10 @@
 
     <artifactId>plugin-one</artifactId>
 
+    <name>Plugin One</name>
+    <description>
+        An example of a plugin that has conflicting classes with another. Meant to verify that dynamic loading is
+        working.
+    </description>
+
 </project>

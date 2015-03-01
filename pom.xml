@@ -6,6 +6,11 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <name>Parent</name>
+    <description>
+        The overarching build for the main application.
+    </description>
+
     <modules>
         <module>core-api</module>
         <module>core-impl</module>

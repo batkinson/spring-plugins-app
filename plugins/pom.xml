@@ -9,6 +9,11 @@
     <artifactId>plugins</artifactId>
     <packaging>pom</packaging>
 
+    <name>Plugins</name>
+    <description>
+        Contains plugins that are typically bundled with the application core.
+    </description>
+
     <modules>
         <module>plugin-one</module>
         <module>plugin-two</module>

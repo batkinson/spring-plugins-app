@@ -8,4 +8,10 @@
 
     <artifactId>core-api</artifactId>
 
+    <name>Api</name>
+    <description>
+        The application classes that are use to refer to application concepts. Items located in this package should be
+        assignable across application versions, or extensions will break.
+    </description>
+
 </project>

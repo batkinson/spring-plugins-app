@@ -8,4 +8,10 @@
 
     <artifactId>core-impl</artifactId>
 
+    <name>Core</name>
+    <description>
+        The application classes that actually implement the core system. You should expect to find implementations of
+        the core api interfaces and other items necessary for the application here.
+    </description>
+
 </project>
