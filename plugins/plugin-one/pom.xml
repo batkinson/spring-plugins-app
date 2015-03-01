@@ -1,11 +1,11 @@
 <project>
-   <modelVersion>4.0.0</modelVersion>
-   <parent>
-      <groupId>com.github.batkinson</groupId>
-      <artifactId>plugins</artifactId>
-      <version>1.0-SNAPSHOT</version>
-   </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.github.batkinson</groupId>
+        <artifactId>plugins</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
-   <artifactId>plugin-one</artifactId>
+    <artifactId>plugin-one</artifactId>
 
 </project>
