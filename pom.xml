@@ -8,7 +8,7 @@
 
     <modules>
         <module>core-api</module>
-        <module>core-services</module>
+        <module>core-impl</module>
         <module>plugins</module>
     </modules>
 

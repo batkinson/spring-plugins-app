@@ -6,6 +6,6 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>core-services</artifactId>
+    <artifactId>core-impl</artifactId>
 
 </project>
