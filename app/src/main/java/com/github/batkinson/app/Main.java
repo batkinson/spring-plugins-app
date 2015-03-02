@@ -53,7 +53,10 @@ public class Main extends SpringBootServletInitializer {
     }
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext ctx = new SpringApplicationBuilder().sources(Main.class).initializers(new PluginLoader()).run(args);
+        ConfigurableApplicationContext ctx = new SpringApplicationBuilder()
+            .sources(Main.class)
+            .initializers(new PluginLoader())
+            .run(args);
     }
 
 }

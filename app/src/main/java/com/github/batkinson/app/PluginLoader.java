@@ -6,7 +6,6 @@ import org.codehaus.classworlds.ClassWorld;
 import org.codehaus.classworlds.DuplicateRealmException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.core.io.DefaultResourceLoader;
@@ -16,8 +15,9 @@ import org.springframework.web.context.support.GenericWebApplicationContext;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.net.MalformedURLException;
+import java.net.URL;
 
-public class PluginLoader implements ApplicationContextInitializer<GenericWebApplicationContext>, BeanFactoryPostProcessor {
+public class PluginLoader implements ApplicationContextInitializer<GenericWebApplicationContext> {
 
     private static final Logger log = LoggerFactory.getLogger(PluginLoader.class);
 
@@ -34,18 +34,20 @@ public class PluginLoader implements ApplicationContextInitializer<GenericWebApp
             }
         });
 
-        ClassWorld world = new ClassWorld();
-
         try {
+
+            ClassWorld world = new ClassWorld();
             ClassRealm loaderRealm = world.newRealm("loader", PluginLoader.class.getClassLoader());
 
             for (File file : files) {
 
-                log.info("loading {}...", file);
+                log.info("loading plugin from {}...", file);
 
-                ClassRealm pluginRealm = world.newRealm(file.getName());
+                URL pluginUrl = file.toURL();
+
+                ClassRealm pluginRealm = world.newRealm(pluginUrl.toString());
                 pluginRealm.setParent(loaderRealm);
-                pluginRealm.addConstituent(file.toURL());
+                pluginRealm.addConstituent(pluginUrl);
 
                 ClassLoader classLoader = pluginRealm.getClassLoader();
 
