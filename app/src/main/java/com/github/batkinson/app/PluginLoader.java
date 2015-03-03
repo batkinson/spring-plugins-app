@@ -1,10 +1,10 @@
 package com.github.batkinson.app;
 
 
-import org.codehaus.classworlds.ClassRealm;
-import org.codehaus.classworlds.ClassWorld;
-import org.codehaus.classworlds.DuplicateRealmException;
-import org.codehaus.classworlds.NoSuchRealmException;
+import org.codehaus.plexus.classworlds.ClassWorld;
+import org.codehaus.plexus.classworlds.realm.ClassRealm;
+import org.codehaus.plexus.classworlds.realm.DuplicateRealmException;
+import org.codehaus.plexus.classworlds.realm.NoSuchRealmException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
@@ -61,8 +61,8 @@ public class PluginLoader implements ApplicationContextInitializer<GenericWebApp
                 log.info("registering plugin from {}...", pluginName);
                 URL pluginUrl = file.toURL();
                 ClassRealm pluginRealm = world.newRealm(pluginName);
-                pluginRealm.setParent(loaderRealm);
-                pluginRealm.addConstituent(pluginUrl);
+                pluginRealm.setParentRealm(loaderRealm);
+                pluginRealm.addURL(pluginUrl);
                 toLoad.add(pluginName);
             } catch (DuplicateRealmException | MalformedURLException e) {
                 log.error("failed to register plugin", e);
@@ -76,8 +76,7 @@ public class PluginLoader implements ApplicationContextInitializer<GenericWebApp
                 try {
                     log.info("processing imports for plugin {}...", pluginName);
                     ClassRealm pluginRealm = world.getRealm(pluginName);
-                    ClassLoader classLoader = pluginRealm.getClassLoader();
-                    InputStream imports = classLoader.getResourceAsStream("META-INF/plugin-imports.txt");
+                    InputStream imports = pluginRealm.getResourceAsStream("META-INF/plugin-imports.txt");
                     if (imports != null) {
                         log.info("found plugin-imports.txt, importing...");
                         BufferedReader reader = new BufferedReader(new InputStreamReader(imports));
@@ -107,10 +106,9 @@ public class PluginLoader implements ApplicationContextInitializer<GenericWebApp
                 try {
                     log.info("processing imports for plugin {}...", pluginName);
                     ClassRealm pluginRealm = world.getRealm(pluginName);
-                    ClassLoader classLoader = pluginRealm.getClassLoader();
                     XmlBeanDefinitionReader beanReader = new XmlBeanDefinitionReader(ctx);
-                    beanReader.setBeanClassLoader(classLoader);
-                    ResourceLoader resourceLoader = new DefaultResourceLoader(classLoader);
+                    beanReader.setBeanClassLoader(pluginRealm);
+                    ResourceLoader resourceLoader = new DefaultResourceLoader(pluginRealm);
                     beanReader.setResourceLoader(resourceLoader);
                     beanReader.loadBeanDefinitions("classpath:META-INF/plugin-context.xml");
                 } catch (NoSuchRealmException e) {
