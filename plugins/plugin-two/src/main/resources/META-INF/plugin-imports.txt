@@ -1,0 +1,3 @@
+loader:org.springframework
+loader:com.github.batkinson.api
+loader:org.slf4j

@@ -66,7 +66,6 @@ public class PluginLoader implements ApplicationContextInitializer<GenericWebApp
                 log.info("registering plugin from {}...", pluginName);
                 URL pluginUrl = file.toURL();
                 ClassRealm pluginRealm = world.newRealm(pluginName);
-                pluginRealm.setParentRealm(loaderRealm);
                 pluginRealm.addURL(pluginUrl);
                 toLoad.add(pluginName);
             } catch (DuplicateRealmException | MalformedURLException e) {

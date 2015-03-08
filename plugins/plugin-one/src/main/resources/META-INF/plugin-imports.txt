@@ -1,1 +1,3 @@
+loader:org.springframework
+loader:com.github.batkinson.api
 plugin-two-1.0-SNAPSHOT.jar:com.github.batkinson.plugin.crossplugin
