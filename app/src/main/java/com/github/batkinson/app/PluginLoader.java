@@ -23,12 +23,17 @@ public class PluginLoader implements ApplicationContextInitializer<GenericWebApp
 
     private static final Logger log = LoggerFactory.getLogger(PluginLoader.class);
 
+    private File pluginDir;
+
+    public PluginLoader(File pluginDir) {
+        this.pluginDir = pluginDir;
+    }
+
     @Override
     public void initialize(GenericWebApplicationContext ctx) {
 
         log.info("initializing plugins");
 
-        File pluginDir = new File("/home/batkinson/plugins");
         File[] files = pluginDir.listFiles(new FilenameFilter() {
             @Override
             public boolean accept(File dir, String name) {

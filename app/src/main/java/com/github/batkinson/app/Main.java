@@ -15,6 +15,7 @@ import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.File;
 import java.util.Map;
 
 @Configuration
@@ -53,9 +54,10 @@ public class Main extends SpringBootServletInitializer {
     }
 
     public static void main(String[] args) {
+        File pluginDirectory = new File(System.getProperty("user.home"), "plugins");
         ConfigurableApplicationContext ctx = new SpringApplicationBuilder()
             .sources(Main.class)
-            .initializers(new PluginLoader())
+            .initializers(new PluginLoader(pluginDirectory))
             .run(args);
     }
 
