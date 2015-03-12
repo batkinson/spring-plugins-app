@@ -42,9 +42,8 @@ public class PluginLoader implements ApplicationContextInitializer<GenericWebApp
         });
 
         ClassWorld world = new ClassWorld();
-        ClassRealm loaderRealm = null;
         try {
-            loaderRealm = world.newRealm("loader", PluginLoader.class.getClassLoader());
+            world.newRealm("loader", PluginLoader.class.getClassLoader());
         } catch (DuplicateRealmException e) {
             log.error("failed to create realm for loader, plugin loading will be skipped", e);
             return;
