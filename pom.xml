@@ -48,6 +48,12 @@
         </dependencies>
     </dependencyManagement>
 
+    <scm>
+        <url>https://github.com/batkinson/spring-plugins-app</url>
+        <connection>scm:git:git://github.com/batkinson/spring-plugins-app.git</connection>
+        <developerConnection>scm:git:git://github.com/batkinson/spring-plugins-app.git</developerConnection>
+    </scm>
+
     <properties>
         <spring.version>4.1.4.RELEASE</spring.version>
         <spring-boot.version>1.2.1.RELEASE</spring-boot.version>
